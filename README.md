@@ -77,13 +77,19 @@ python run.py
 API: http://localhost:8000  
 Docs: http://localhost:8000/docs
 
-### 3. Docker
+### 3. Run tests
+
+```bash
+pytest tests/ -v
+```
+
+### 4. Docker
 
 ```bash
 docker-compose up --build
 ```
 
-### 4. Example request
+### 5. Example request
 
 ```bash
 curl -X POST http://localhost:8000/api/v1/query \
