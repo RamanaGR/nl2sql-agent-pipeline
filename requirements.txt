@@ -1,0 +1,32 @@
+# AI
+google-genai>=1.0.0
+
+# API & Backend
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+
+# Looker
+looker-sdk>=25.0.0
+
+# Validation
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Async
+redis>=5.0.0
+celery>=5.3.0
+
+# Observability
+opentelemetry-api>=1.22.0
+opentelemetry-sdk>=1.22.0
+opentelemetry-exporter-otlp-proto-http>=1.22.0
+opentelemetry-instrumentation-fastapi>=0.43b0
+loguru>=0.7.2
+
+# Utilities
+python-dotenv>=1.0.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+httpx>=0.26.0

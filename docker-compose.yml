@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - LOOKERSDK_BASE_URL=${LOOKERSDK_BASE_URL:-}
+      - LOOKERSDK_CLIENT_ID=${LOOKERSDK_CLIENT_ID:-}
+      - LOOKERSDK_CLIENT_SECRET=${LOOKERSDK_CLIENT_SECRET:-}
+      - REDIS_URL=redis://redis:6379/0
+      - OTLP_ENDPOINT=${OTLP_ENDPOINT:-}
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # Optional: Jaeger for trace visualization
+  jaeger:
+    image: jaegertracing/all-in-one:1.52
+    ports:
+      - "16686:16686"   # Jaeger UI
+      - "4317:4317"     # OTLP gRPC
+      - "4318:4318"     # OTLP HTTP
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+
+volumes:
+  redis_data:
